@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="text-align: center">Choose team members</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+        <form method=POST action="{{ url_for('check_team') }}">
+    <!--<h3>Team member {{i}}</h3>-->
+            <ul style="list-style-type: none;">
+        {% for i in range(0, 9)%}
+           <li> Team member #{{i+1}}<select name = "memberId{{i}}" style="margin-left: 2em">
+         {% for user in users%}
+                <option value="{{ user.id }}">{{ user.nickname }}</option>
+         {% endfor %}
+            </select> </li><br>
+        {% endfor %}
+            </ul>
+        <input type="submit" value = "Confirm creation" class="btn btn-primary btn-block"/>
+        </form>
+{% if error %}
+<div style="text-align: center;"> {{ error }} </div>
+{% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
